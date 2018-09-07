@@ -5,15 +5,15 @@ import java.util.List;
 
 public class User {
 
-    private double account;
+    private double balance;
     private List<Transaction> transactions = new ArrayList<>();
 
     public User(double account) {
-        this.account = account;
+        this.balance = account;
     }
 
     public void deposit(double amount) {
-        account += amount;
-        Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, account);
+        balance += amount;
+        Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, balance);
     }
 }
