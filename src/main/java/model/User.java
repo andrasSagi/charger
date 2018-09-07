@@ -9,7 +9,7 @@ public class User {
     private List<Transaction> transactions = new ArrayList<>();
 
     public User(double account) {
-        this.balance = account;
+        balance = account;
     }
 
     public void deposit(double amount) {
@@ -21,6 +21,19 @@ public class User {
     public void withdraw(double amount) {
         balance -= amount;
         Transaction transaction = new Transaction(TransactionType.WITHDRAW, 0 - amount, balance);
+        transactions.add(transaction);
+    }
+
+    public void transferTo(User receiver, double amount) {
+        balance -= amount;
+        receiver.receiveTransfer(amount);
+        Transaction transaction = new Transaction(TransactionType.TRANSFER, 0 - amount, balance);
+        transactions.add(transaction);
+    }
+
+    private void receiveTransfer(double amount) {
+        balance += amount;
+        Transaction transaction = new Transaction(TransactionType.TRANSFER, amount, balance);
         transactions.add(transaction);
     }
 }
