@@ -11,6 +11,22 @@ class Transaction {
     private int month;
     private int day;
 
+    public TransactionType getType() {
+        return type;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
     Transaction(TransactionType type, double amount, double balance) {
         this.type = type;
         this.amount = amount;
