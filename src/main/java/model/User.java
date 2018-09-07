@@ -46,4 +46,14 @@ public class User {
             System.out.println(transaction.toString());
         }
     }
+
+    public List<Transaction> filterByTransactionType(TransactionType type) {
+        List<Transaction> filteredHistory = new ArrayList<>();
+        for (Transaction transaction: transactionHistory) {
+            if (transaction.getType().equals(type)) {
+                filteredHistory.add(transaction);
+            }
+        }
+        return filteredHistory;
+    }
 }
