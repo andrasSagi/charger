@@ -56,4 +56,16 @@ public class User {
         }
         return filteredHistory;
     }
+
+    public List<Transaction> filterByDate(int day, int month, int year) {
+        List<Transaction> filteredHistory = new ArrayList<>();
+        for (Transaction transaction: transactionHistory) {
+            if (transaction.getYear() == year &&
+                    transaction.getMonth() == month &&
+                    transaction.getDay() == day) {
+                filteredHistory.add(transaction);
+            }
+        }
+        return filteredHistory;
+    }
 }
