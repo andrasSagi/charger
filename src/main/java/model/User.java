@@ -22,26 +22,26 @@ public class User {
     }
 
     public void deposit(BigDecimal amount) {
-        balance = balance.add(amount);
+        balance = balance.add(amount.abs());
         Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, balance);
         transactionHistory.add(transaction);
     }
 
     public void withdraw(BigDecimal amount) {
-        balance = balance.subtract(amount);
-        Transaction transaction = new Transaction(TransactionType.WITHDRAW, new BigDecimal(0).subtract(amount), balance);
+        balance = balance.subtract(amount.abs());
+        Transaction transaction = new Transaction(TransactionType.WITHDRAW, new BigDecimal(0).subtract(amount.abs()), balance);
         transactionHistory.add(transaction);
     }
 
     public void transferTo(User receiver, BigDecimal amount) {
-        balance = balance.subtract(amount);
+        balance = balance.subtract(amount.abs());
         receiver.receiveTransfer(amount);
-        Transaction transaction = new Transaction(TransactionType.TRANSFER,  new BigDecimal(0).subtract(amount), balance);
+        Transaction transaction = new Transaction(TransactionType.TRANSFER,  new BigDecimal(0).subtract(amount.abs()), balance);
         transactionHistory.add(transaction);
     }
 
     private void receiveTransfer(BigDecimal amount) {
-        balance = balance.subtract(amount);
+        balance = balance.subtract(amount.abs());
         Transaction transaction = new Transaction(TransactionType.TRANSFER, amount, balance);
         transactionHistory.add(transaction);
     }
