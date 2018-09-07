@@ -17,8 +17,8 @@ public class User {
         return balance;
     }
 
-    public User(BigDecimal account) {
-        balance = balance.add(account);
+    User(BigDecimal account) {
+        balance = account;
     }
 
     public void deposit(BigDecimal amount) {
