@@ -20,4 +20,11 @@ class Transaction {
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
     }
+
+    @Override
+    public String toString() {
+        return day + "." + month + "." + year + "." +
+             "\n    " + type + "\n    Changes to balance: " + amount +
+             "\n    " + "Balance after exchange: " + balance;
+    }
 }
