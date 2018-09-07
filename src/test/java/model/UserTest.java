@@ -4,6 +4,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 
@@ -34,5 +36,18 @@ public class UserTest {
         testUser.transferTo(receiver, new BigDecimal(500));
         assertEquals(new BigDecimal(500), testUser.getBalance());
         assertEquals(new BigDecimal(1500), receiver.getBalance());
+    }
+
+    @Test
+    public void testFilterTransactionsByTypeByReturnSize() {
+        List<Transaction> testTransactions = new ArrayList<>();
+        Transaction testTransaction = new Transaction(TransactionType.WITHDRAW,
+                new BigDecimal(-300), new BigDecimal(1400));
+        testTransactions.add(testTransaction);
+        testUser.deposit(new BigDecimal(200));
+        testUser.deposit(new BigDecimal(500));
+        testUser.withdraw(new BigDecimal(300));
+        System.out.println(testUser.getTransactionHistory());
+        assertEquals(testTransactions.size(), testUser.filterTransactionsByType(TransactionType.WITHDRAW).size());
     }
 }
