@@ -40,4 +40,10 @@ public class User {
         Transaction transaction = new Transaction(TransactionType.TRANSFER, amount, balance);
         transactionHistory.add(transaction);
     }
+
+    public void printTransactionHistory() {
+        for (Transaction transaction: transactionHistory) {
+            System.out.println(transaction.toString());
+        }
+    }
 }
