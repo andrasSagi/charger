@@ -12,4 +12,8 @@ public class User {
         this.account = account;
     }
 
+    public void deposit(double amount) {
+        account += amount;
+        Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, account);
+    }
 }
