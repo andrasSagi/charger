@@ -1,33 +1,34 @@
 package model;
 
+import java.math.BigDecimal;
 import java.util.Calendar;
 
 class Transaction {
 
     private TransactionType type;
-    private double amount;
-    private double balance;
+    private BigDecimal amount;
+    private BigDecimal balance;
     private int year;
     private int month;
     private int day;
 
-    public TransactionType getType() {
+    TransactionType getType() {
         return type;
     }
 
-    public int getYear() {
+    int getYear() {
         return year;
     }
 
-    public int getMonth() {
+    int getMonth() {
         return month;
     }
 
-    public int getDay() {
+    int getDay() {
         return day;
     }
 
-    Transaction(TransactionType type, double amount, double balance) {
+    Transaction(TransactionType type, BigDecimal amount, BigDecimal balance) {
         this.type = type;
         this.amount = amount;
         this.balance = balance;

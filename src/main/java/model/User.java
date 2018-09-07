@@ -1,44 +1,47 @@
 package model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.Math.abs;
-
 public class User {
 
-    private double balance;
+    private BigDecimal balance;
     private List<Transaction> transactionHistory = new ArrayList<>();
 
     public List<Transaction> getTransactionHistory() {
         return transactionHistory;
     }
 
-    public User(double account) {
-        balance = abs(account);
+    BigDecimal getBalance() {
+        return balance;
     }
 
-    public void deposit(double amount) {
-        balance += abs(amount);
+    public User(BigDecimal account) {
+        balance = balance.add(account);
+    }
+
+    public void deposit(BigDecimal amount) {
+        balance = balance.add(amount);
         Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, balance);
         transactionHistory.add(transaction);
     }
 
-    public void withdraw(double amount) {
-        balance -= abs(amount);
-        Transaction transaction = new Transaction(TransactionType.WITHDRAW, 0 - amount, balance);
+    public void withdraw(BigDecimal amount) {
+        balance = balance.subtract(amount);
+        Transaction transaction = new Transaction(TransactionType.WITHDRAW, new BigDecimal(0).subtract(amount), balance);
         transactionHistory.add(transaction);
     }
 
-    public void transferTo(User receiver, double amount) {
-        balance -= abs(amount);
+    public void transferTo(User receiver, BigDecimal amount) {
+        balance = balance.subtract(amount);
         receiver.receiveTransfer(amount);
-        Transaction transaction = new Transaction(TransactionType.TRANSFER, 0 - amount, balance);
+        Transaction transaction = new Transaction(TransactionType.TRANSFER,  new BigDecimal(0).subtract(amount), balance);
         transactionHistory.add(transaction);
     }
 
-    private void receiveTransfer(double amount) {
-        balance += abs(amount);
+    private void receiveTransfer(BigDecimal amount) {
+        balance = balance.subtract(amount);
         Transaction transaction = new Transaction(TransactionType.TRANSFER, amount, balance);
         transactionHistory.add(transaction);
     }
