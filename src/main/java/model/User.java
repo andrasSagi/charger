@@ -52,7 +52,7 @@ public class User {
         }
     }
 
-    public List<Transaction> filterByTransactionsByType(TransactionType type) {
+    List<Transaction> filterTransactionsByType(TransactionType type) {
         List<Transaction> filteredHistory = new ArrayList<>();
         for (Transaction transaction: transactionHistory) {
             if (transaction.getType().equals(type)) {
