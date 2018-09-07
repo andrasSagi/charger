@@ -40,7 +40,7 @@ class Transaction {
 
     @Override
     public String toString() {
-        return day + "." + month + "." + year + "." +
+        return "\n" + day + "." + month + "." + year + "." +
              "\n    " + type + "\n    Changes to balance: " + amount +
              "\n    " + "Balance after exchange: " + balance;
     }
