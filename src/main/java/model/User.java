@@ -21,19 +21,19 @@ public class User {
         balance = account;
     }
 
-    public void deposit(BigDecimal amount) {
+    void deposit(BigDecimal amount) {
         balance = balance.add(amount.abs());
         Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, balance);
         transactionHistory.add(transaction);
     }
 
-    public void withdraw(BigDecimal amount) {
+    void withdraw(BigDecimal amount) {
         balance = balance.subtract(amount.abs());
         Transaction transaction = new Transaction(TransactionType.WITHDRAW, new BigDecimal(0).subtract(amount.abs()), balance);
         transactionHistory.add(transaction);
     }
 
-    public void transferTo(User receiver, BigDecimal amount) {
+    void transferTo(User receiver, BigDecimal amount) {
         balance = balance.subtract(amount.abs());
         receiver.receiveTransfer(amount);
         Transaction transaction = new Transaction(TransactionType.TRANSFER,  new BigDecimal(0).subtract(amount.abs()), balance);
@@ -41,7 +41,7 @@ public class User {
     }
 
     private void receiveTransfer(BigDecimal amount) {
-        balance = balance.subtract(amount.abs());
+        balance = balance.add(amount.abs());
         Transaction transaction = new Transaction(TransactionType.TRANSFER, amount, balance);
         transactionHistory.add(transaction);
     }
