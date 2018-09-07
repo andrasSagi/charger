@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
 public class User {
 
     private double balance;
@@ -13,30 +15,30 @@ public class User {
     }
 
     public User(double account) {
-        balance = account;
+        balance = abs(account);
     }
 
     public void deposit(double amount) {
-        balance += amount;
+        balance += abs(amount);
         Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, balance);
         transactionHistory.add(transaction);
     }
 
     public void withdraw(double amount) {
-        balance -= amount;
+        balance -= abs(amount);
         Transaction transaction = new Transaction(TransactionType.WITHDRAW, 0 - amount, balance);
         transactionHistory.add(transaction);
     }
 
     public void transferTo(User receiver, double amount) {
-        balance -= amount;
+        balance -= abs(amount);
         receiver.receiveTransfer(amount);
         Transaction transaction = new Transaction(TransactionType.TRANSFER, 0 - amount, balance);
         transactionHistory.add(transaction);
     }
 
     private void receiveTransfer(double amount) {
-        balance += amount;
+        balance += abs(amount);
         Transaction transaction = new Transaction(TransactionType.TRANSFER, amount, balance);
         transactionHistory.add(transaction);
     }
