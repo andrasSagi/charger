@@ -22,4 +22,10 @@ public class UserTest {
         testUser.withdraw(new BigDecimal(200));
         assertEquals(new BigDecimal(800), testUser.getBalance());
     }
+
+    @Test
+    public void testIfDepositAdds200To1000_ShouldBe1200() {
+        testUser.deposit(new BigDecimal(200));
+        assertEquals(new BigDecimal(1200), testUser.getBalance());
+    }
 }
