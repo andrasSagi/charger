@@ -15,6 +15,7 @@ public class User {
     public void deposit(double amount) {
         balance += amount;
         Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, balance);
+        transactions.add(transaction);
     }
 
     public void withdraw(double amount) {
