@@ -28,4 +28,12 @@ public class UserTest {
         testUser.deposit(new BigDecimal(200));
         assertEquals(new BigDecimal(1200), testUser.getBalance());
     }
+
+    @Test
+    public void testIfTransferArrivesAndSubtractsCorrectly() {
+        User receiver = new User(new BigDecimal(1000));
+        testUser.transferTo(receiver, new BigDecimal(500));
+        assertEquals(new BigDecimal(500), testUser.getBalance());
+        assertEquals(new BigDecimal(1500), receiver.getBalance());
+    }
 }
