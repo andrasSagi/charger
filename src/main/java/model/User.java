@@ -47,7 +47,7 @@ public class User {
         }
     }
 
-    public List<Transaction> filterByTransactionType(TransactionType type) {
+    public List<Transaction> filterByTransactionsByType(TransactionType type) {
         List<Transaction> filteredHistory = new ArrayList<>();
         for (Transaction transaction: transactionHistory) {
             if (transaction.getType().equals(type)) {
@@ -57,7 +57,7 @@ public class User {
         return filteredHistory;
     }
 
-    public List<Transaction> filterByDate(int day, int month, int year) {
+    public List<Transaction> filterTransactionsByDate(int day, int month, int year) {
         List<Transaction> filteredHistory = new ArrayList<>();
         for (Transaction transaction: transactionHistory) {
             if (transaction.getYear() == year &&
