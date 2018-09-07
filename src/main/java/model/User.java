@@ -16,4 +16,10 @@ public class User {
         balance += amount;
         Transaction transaction = new Transaction(TransactionType.DEPOSIT, amount, balance);
     }
+
+    public void withdraw(double amount) {
+        balance -= amount;
+        Transaction transaction = new Transaction(TransactionType.WITHDRAW, 0 - amount, balance);
+        transactions.add(transaction);
+    }
 }
